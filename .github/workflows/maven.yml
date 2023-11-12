@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Project Datnek back-end
+name: Project Datnek back-end java
 
 on:
   push:
