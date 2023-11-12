@@ -13,54 +13,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.guy.datnek.entite.Todo;
 import com.guy.datnek.entite.User;
-import com.guy.datnek.repository.UserRepository;
+import com.guy.datnek.repository.TodoRepository;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/todo")
+public class TodoController {
 	
 	@Autowired
-	UserRepository userRepository;
+	TodoRepository todoRepository;
 	
 	@PostMapping("/save")
-	public ResponseEntity<?> createUser(@RequestBody User user){
-		
-	
-		
-		User usr = userRepository.save(user);
-		if(usr != null) {
-			return ResponseEntity.ok(usr);
+	public ResponseEntity<?> createTodo(@RequestBody Todo todo){	
+		Todo td = todoRepository.save(todo);
+		if(td != null) {
+			return ResponseEntity.ok(td);
 		}else {
 			return ResponseEntity.badRequest().body("Creation echouer");
 		}
 	}
 	
-	
 	@GetMapping("/alls")
-	public ResponseEntity<?> getAllUsers(){
-		List<User> users = userRepository.findAll();
-		return ResponseEntity.ok(users);
+	public ResponseEntity<?> getAllTodo(){
+		List<Todo> todos = todoRepository.findAll();
+		return ResponseEntity.ok(todos);
 		
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteUser(@PathVariable(value = "id") long id){
-		userRepository.deleteById(id);
+	public void deleteTodo(@PathVariable(value = "id") long id){
+		todoRepository.deleteById(id);
 			
 	}
 	
-	@GetMapping("/existe/{langue}")
-	public boolean checkExisteByLangue(@PathVariable(value = "langue") String langue) {
-		return userRepository.existsByLangue(langue);
-	}
-	
 	@PutMapping("/update")
-	public ResponseEntity<?> updateUser(@RequestBody User user){
+	public ResponseEntity<?> updateTodo(@RequestBody Todo todo){
 		
-		User usr = userRepository.save(user);
-		if(usr != null) {
-			return ResponseEntity.ok(usr);
+		Todo Tdo = todoRepository.save(todo);
+		if(Tdo != null) {
+			return ResponseEntity.ok(Tdo);
 		}else {
 			return ResponseEntity.badRequest().body("User Introuvable");
 		}

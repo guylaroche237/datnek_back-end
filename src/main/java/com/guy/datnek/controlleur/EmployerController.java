@@ -8,27 +8,25 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.guy.datnek.entite.Employe;
 import com.guy.datnek.entite.User;
-import com.guy.datnek.repository.UserRepository;
+import com.guy.datnek.repository.EmployerRepository;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/employe")
+public class EmployerController {
 	
 	@Autowired
-	UserRepository userRepository;
+	EmployerRepository employerRepository;
 	
 	@PostMapping("/save")
-	public ResponseEntity<?> createUser(@RequestBody User user){
-		
+	public ResponseEntity<?> createEmploye(@RequestBody Employe employe){
 	
-		
-		User usr = userRepository.save(user);
+		Employe usr = employerRepository.save(employe);
 		if(usr != null) {
 			return ResponseEntity.ok(usr);
 		}else {
@@ -38,32 +36,16 @@ public class UserController {
 	
 	
 	@GetMapping("/alls")
-	public ResponseEntity<?> getAllUsers(){
-		List<User> users = userRepository.findAll();
+	public ResponseEntity<?> getAllEmployer(){
+		List<Employe> users = employerRepository.findAll();
 		return ResponseEntity.ok(users);
 		
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteUser(@PathVariable(value = "id") long id){
-		userRepository.deleteById(id);
+	public void deleteEmploye(@PathVariable(value = "id") long id){
+		employerRepository.deleteById(id);
 			
-	}
-	
-	@GetMapping("/existe/{langue}")
-	public boolean checkExisteByLangue(@PathVariable(value = "langue") String langue) {
-		return userRepository.existsByLangue(langue);
-	}
-	
-	@PutMapping("/update")
-	public ResponseEntity<?> updateUser(@RequestBody User user){
-		
-		User usr = userRepository.save(user);
-		if(usr != null) {
-			return ResponseEntity.ok(usr);
-		}else {
-			return ResponseEntity.badRequest().body("User Introuvable");
-		}
 	}
 
 }

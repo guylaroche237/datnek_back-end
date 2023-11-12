@@ -3,11 +3,9 @@ package com.guy.datnek.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.guy.datnek.entite.User;
+import com.guy.datnek.entite.Todo;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-	
-	Boolean existsByLangue(String langue); 
+public interface TodoRepository extends JpaRepository<Todo,Long > {
 
 }

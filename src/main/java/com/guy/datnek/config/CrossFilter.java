@@ -27,7 +27,7 @@ public class CrossFilter implements Filter {
 		
 		  HttpServletRequest req = (HttpServletRequest) request;
 		  
-		  resp.setHeader("Access-Control-Allow-Origin","http://localhost:4200");
+		  resp.setHeader("Access-Control-Allow-Origin","http://localhost:4400");
 		  resp.setHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE, PUT");
 		  resp.setHeader("Access-Control-Max-Age","3600");
 		  resp.setHeader("Access-control-Allow-Credentials", "true");
